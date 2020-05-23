@@ -10,6 +10,7 @@
   service: name=rabbitmq-server state=started
 
 - name: Ensure the users is removed
+  become: True
   rabbitmq_user: user={{item}} state=absent
   with_items: "{{rabbitmq_users_remove}}"
   no_log: True
@@ -19,6 +20,7 @@
   with_items: "{{rabbitmq_vhosts}}"
 
 - name: Ensure the users is present
+  become: True
   rabbitmq_user: >
       user={{item.user}}
       password={{item.password}}
@@ -34,6 +36,7 @@
   file: state=link src=/usr/lib/rabbitmq/bin dest=/usr/lib/rabbitmq/sbin
 
 - name: Enable the plugins is installed
+  become: True
   rabbitmq_plugin: names={{item}} state=enabled prefix=/usr/lib/rabbitmq
   with_items: "{{rabbitmq_plugins}}"
   notify:
