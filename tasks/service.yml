@@ -1,9 +1,9 @@
 ---
 
-- include: install.deb.yml
+- import_tasks: install.deb.yml
   when: ansible_os_family == 'Debian' and not rabbitmq_docker
 
-- include: install.yum.yml
+- import_tasks: install.yum.yml
   when: ansible_os_family == 'RedHat' and not rabbitmq_docker
 
 - name: Ensure RabbitMQ is running

@@ -1,7 +1,7 @@
 ---
 
-- include: service.yml
+- import_tasks: service.yml
   when: not rabbitmq_docker
 
-- include: docker.yml
+- import_tasks: docker.yml
   when: rabbitmq_docker

@@ -1,5 +1,5 @@
 ---
 
-- include: rabbitmq.yml
+- import_tasks: rabbitmq.yml
   when: rabbitmq_enabled
   tags: [rabbitmq]
