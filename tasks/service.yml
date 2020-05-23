@@ -12,6 +12,7 @@
 - name: Ensure the users is removed
   rabbitmq_user: user={{item}} state=absent
   with_items: "{{rabbitmq_users_remove}}"
+  no_log: True
 
 - name: Ensure the vhosts is present
   rabbitmq_vhost: name={{item}}
@@ -27,6 +28,7 @@
       vhost={{item.vhost|default('/')}}
       tags={{item.tags|default('')}}
   with_items: "{{rabbitmq_users}}"
+  no_log: True
 
 - name: Symlink RabbitMQ bin to sbin
   file: state=link src=/usr/lib/rabbitmq/bin dest=/usr/lib/rabbitmq/sbin
