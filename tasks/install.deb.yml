@@ -6,15 +6,26 @@
     id: '0x0A9AF2115F4687BD29803A206B73A36E6026DFCA'
     state: present
 
-- name: Add RabbitMQ cloudsmith key
+- name: Add RabbitMQ Erlang cloudsmith key
   apt_key:
     url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/gpg.E495BB49CC4BBE5B.key
     id: 'E495BB49CC4BBE5B'
     state: present
 
-- name: Add RabbitMQ repository
+- name: Add RabbitMQ Erlang repository
   apt_repository:
     repo: 'deb https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/deb/ubuntu bionic main'
+    update_cache: yes
+
+- name: Add RabbitMQ cloudsmith key
+  apt_key:
+    url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/gpg.9F4587F226208342.key
+    id: '9F4587F226208342'
+    state: present
+
+- name: Add RabbitMQ repository
+  apt_repository:
+    repo: 'deb https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/deb/ubuntu bionic main'
     update_cache: yes
 
 - name: Ensure RabbitMQ is installed
